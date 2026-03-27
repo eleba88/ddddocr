@@ -13,7 +13,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     build-essential \
     curl \
-    libgl1-mesa-glx \
+    libgl1 \
     libglib2.0-0 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -36,22 +36,22 @@ ENV PYTHONPATH=/app
 # 这些环境变量可以在 docker run 或 docker-compose 中覆盖
 
 # API 服务器配置
-ENV DDDDOCR_HOST=0.0.0.0       # 监听所有网络接口
-ENV DDDDOCR_PORT=8000          # 服务运行端口
-ENV DDDDOCR_WORKERS=1          # API 服务工作进程数
+ENV DDDDOCR_HOST=0.0.0.0       
+ENV DDDDOCR_PORT=8000          
+ENV DDDDOCR_WORKERS=1          
 
 # OCR 引擎配置
-ENV DDDDOCR_OCR=true           # 是否启用 OCR 功能
-ENV DDDDOCR_DET=false          # 是否启用目标检测功能
-ENV DDDDOCR_OLD=false          # 是否使用旧版 OCR 模型
-ENV DDDDOCR_BETA=false         # 是否使用 Beta 版 OCR 模型
-ENV DDDDOCR_USE_GPU=false      # 是否使用 GPU 加速
-ENV DDDDOCR_DEVICE_ID=0        # GPU 设备 ID
-ENV DDDDOCR_SHOW_AD=true       # 是否显示广告
+ENV DDDDOCR_OCR=true           
+ENV DDDDOCR_DET=false          
+ENV DDDDOCR_OLD=false          
+ENV DDDDOCR_BETA=false         
+ENV DDDDOCR_USE_GPU=false    
+ENV DDDDOCR_DEVICE_ID=0       
+ENV DDDDOCR_SHOW_AD=true      
 
 # 自定义模型配置（需要挂载卷才能访问）
-ENV DDDDOCR_IMPORT_ONNX_PATH="" # 自定义模型路径
-ENV DDDDOCR_CHARSETS_PATH=""    # 自定义字符集路径
+ENV DDDDOCR_IMPORT_ONNX_PATH="" 
+ENV DDDDOCR_CHARSETS_PATH=""    
 
 # 暴露端口（与 DDDDOCR_PORT 环境变量保持一致）
 EXPOSE 8000
